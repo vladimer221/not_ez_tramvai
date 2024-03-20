@@ -1,4 +1,4 @@
-namespace notez
+namespace WinFormsApp1
 {
     public partial class Form1 : Form
     {
