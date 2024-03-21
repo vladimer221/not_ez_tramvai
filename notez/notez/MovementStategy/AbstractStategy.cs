@@ -22,15 +22,15 @@ public abstract class AbstractStategy
             return;
         }
 
-        _state = StrategyStatus.NotInit;
+        _state = StrategyStatus.InProgress;
         _moveableObject = moveableOblect;
-        FieldHight = wight;
-        FieldWight = height;
+        FieldHight = height;
+        FieldWight = wight;
     }
 
     public void MakeStep()
     {
-        if (_state == StrategyStatus.InProgress)
+        if (_state != StrategyStatus.InProgress)
         {
             return;
         }
@@ -56,7 +56,7 @@ public abstract class AbstractStategy
 
         protected int? GetStep()
         {
-            if (_state  != StrategyStatus.InProgress)
+            if (_state != StrategyStatus.InProgress)
             {
                 return null;            
             }   

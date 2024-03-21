@@ -37,7 +37,7 @@ public class DrawningTramvaiBus
     /// <summary>
     /// Ширина прорисовка автобуса
     /// </summary>
-    private readonly int _drawningBusWight = 350;
+    private readonly int _drawningBusWight = 180;
 
     /// <summary>
     /// Высота прорисовки автобуса
@@ -48,7 +48,7 @@ public class DrawningTramvaiBus
 
     public int? GetPosY => _startPosY;
 
-    public int GetWight => _drawingBusHeight;
+    public int GetWight => _drawningBusWight;
 
     public int GetHeight => _drawingBusHeight;
 
@@ -152,15 +152,21 @@ public class DrawningTramvaiBus
             return;
         }
 
+
         Pen pen = new(Color.Black);
 
-        ///g.DrawRectangle(pen, _startPosX.Value, _startPosY.Value, _drawningBusWight, _drawingBusHeight);
+        // g.DrawRectangle(pen, _startPosX.Value, _startPosY.Value, _drawningBusWight, _drawingBusHeight);
+        // g.DrawRectangle(pen, _startPosX.Value + (int)_drawningBusWight, _startPosY.Value + (int)_drawingBusHeight, (int)ClassTramvaiBus.Step, 1);
+        // g.DrawRectangle(pen, _startPosX.Value + (int)_drawningBusWight, _startPosY.Value + (int)_drawingBusHeight, 1, (int)ClassTramvaiBus.Step);
+        // g.DrawRectangle(pen, 1, 1, (float)_pictureWight - 2, (float)_pictureHeight - 2);
+
+        // g.DrawRectangle(pen, (int)_pictureWight / 2, 0, 1, (int)_pictureHeight);
+        // g.DrawRectangle(pen, 0, (int)_pictureHeight / 2, (int)_pictureWight, 1);
 
         // Рисуем кузов автобуса
         g.FillRectangle(Brushes.Yellow, _startPosX.Value, _startPosY.Value, 150, 60);
         g.DrawRectangle(pen, _startPosX.Value, _startPosY.Value, 150, 60);
-        g.FillRectangle(Brushes.Bisque, _startPosX.Value + 200, _startPosY.Value, 150, 60);
-        g.DrawRectangle(pen, _startPosX.Value + 200, _startPosY.Value, 150, 60);
+
         // Рисуем дверь
         g.FillRectangle(Brushes.White, _startPosX.Value + 67, _startPosY.Value + 10, 25, 50);
         g.DrawRectangle(pen, _startPosX.Value + 67, _startPosY.Value + 10, 25, 50);
@@ -170,18 +176,15 @@ public class DrawningTramvaiBus
         g.DrawRectangle(pen, _startPosX.Value + 110, _startPosY.Value + 10, 30, 30);
         g.DrawRectangle(pen, _startPosX.Value + 20, _startPosY.Value + 10, 30, 30);
 
-
         // Рисуем колеса
         g.FillEllipse(Brushes.Black, _startPosX.Value + 20, _startPosY.Value + 55, 30, 30);
         g.FillEllipse(Brushes.Black, _startPosX.Value + 110, _startPosY.Value + 55, 30, 30);
 
-        g.DrawRectangle(pen, _startPosX.Value + 150, _startPosY.Value + 10, 50, 45);
 
-        g.FillEllipse(Brushes.Black, _startPosX.Value + 220, _startPosY.Value + 55, 30, 30);
-        g.FillEllipse(Brushes.Black, _startPosX.Value + 300, _startPosY.Value + 55, 30, 30);
 
-        g.DrawRectangle(pen, _startPosX.Value + 215, _startPosY.Value + 10, 30, 30);
-        g.DrawRectangle(pen, _startPosX.Value + 310, _startPosY.Value + 10, 30, 30);
+        // 2 колеса
+
+
 
 
 

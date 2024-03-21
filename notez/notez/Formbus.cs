@@ -59,9 +59,9 @@ namespace notez
             Draw();
         }
 
-        private void ButtonCreate_Click(object sender, EventArgs e) => CreateOblect(nameof(DrawningTramvai));
+        private void ButtonCreateCar_Click(object sender, EventArgs e) => CreateOblect(nameof(DrawningTramvai));
 
-        private void ButtonCreateCar_Click(object sender, EventArgs e) => CreateOblect(nameof(DrawningTramvaiBus));
+        private void ButtonCreate_Click(object sender, EventArgs e) => CreateOblect(nameof(DrawningTramvaiBus));
         private void ButtonMove_Click(object sender, EventArgs e)
         {
             if (_drawningTramvaiBus == null)

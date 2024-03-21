@@ -19,27 +19,37 @@ public class DrawningTramvai : DrawningTramvaiBus
         Pen pen = new(Color.Black);
         Brush additionalBrush = new SolidBrush(tramvai.AdditionalColor);
 
-        if (tramvai.Line)
-        {
-            g.FillRectangle(additionalBrush, _startPosX.Value + 110, _startPosY.Value + 10, 30, 30);
-            g.FillRectangle(additionalBrush, _startPosX.Value + 20, _startPosY.Value + 10, 30, 30);
-            g.FillRectangle(additionalBrush, _startPosX.Value + 215, _startPosY.Value + 10, 30, 30);
-            g.FillRectangle(additionalBrush, _startPosX.Value + 310, _startPosY.Value + 10, 30, 30);
-        }
 
-        if (tramvai.Accordion)
-        {
+        // окна?
+
+
+
+
+        // гармошка
             g.DrawRectangle(pen, _startPosX.Value + 150, _startPosY.Value + 10, 50, 45);
+            g.FillRectangle(Brushes.Bisque, _startPosX.Value + 200, _startPosY.Value, 150, 60);
+            g.DrawRectangle(pen, _startPosX.Value + 200, _startPosY.Value, 150, 60);
             g.FillRectangle(additionalBrush, _startPosX.Value + 150, _startPosY.Value + 10, 50, 45);
-        }
-        if (tramvai.SecondDoor)
+      
+        // вторая дверь
+        if (tramvai.Accordion)
         {
             g.DrawRectangle(pen, _startPosX.Value + 267, _startPosY.Value + 10, 25, 50);
             g.FillRectangle(additionalBrush, _startPosX.Value + 267, _startPosY.Value + 10, 25, 50);
         }
+                if (tramvai.Line)
+        {
+            g.FillRectangle(Brushes.White, _startPosX.Value + 215, _startPosY.Value + 10, 30, 30);
+            g.DrawRectangle(pen, _startPosX.Value + 215, _startPosY.Value + 10, 30, 30);
+            g.FillRectangle(Brushes.White, _startPosX.Value + 310, _startPosY.Value + 10, 30, 30);
+            g.DrawRectangle(pen, _startPosX.Value + 310, _startPosY.Value + 10, 30, 30);
+        }
+
+        g.FillEllipse(Brushes.Black, _startPosX.Value + 220, _startPosY.Value + 55, 30, 30);
+
+        g.FillEllipse(Brushes.Black, _startPosX.Value + 300, _startPosY.Value + 55, 30, 30);
 
         base.DrawTransport(g);
     }
-
 
 }

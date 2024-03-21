@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             pictureBoxBus = new PictureBox();
-            buttonCreate = new Button();
+            buttonCreateCar = new Button();
             buttonUp = new Button();
             buttonLeft = new Button();
             buttonDown = new Button();
             buttonRight = new Button();
-            buttonCreateCar = new Button();
+            buttonCreate = new Button();
             comboBoxStrategy = new ComboBox();
             buttonStrategyStep = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxBus).BeginInit();
@@ -49,16 +49,16 @@
             pictureBoxBus.TabIndex = 0;
             pictureBoxBus.TabStop = false;
             // 
-            // buttonCreate
+            // buttonCreateCar
             // 
-            buttonCreate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonCreate.Location = new Point(12, 432);
-            buttonCreate.Name = "buttonCreate";
-            buttonCreate.Size = new Size(157, 23);
-            buttonCreate.TabIndex = 1;
-            buttonCreate.Text = "создать";
-            buttonCreate.UseVisualStyleBackColor = true;
-            buttonCreate.Click += ButtonCreate_Click;
+            buttonCreateCar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonCreateCar.Location = new Point(12, 432);
+            buttonCreateCar.Name = "buttonCreateCar";
+            buttonCreateCar.Size = new Size(157, 23);
+            buttonCreateCar.TabIndex = 1;
+            buttonCreateCar.Text = "создать автобус";
+            buttonCreateCar.UseVisualStyleBackColor = true;
+            buttonCreateCar.Click += ButtonCreate_Click;
             // 
             // buttonUp
             // 
@@ -108,16 +108,16 @@
             buttonRight.UseVisualStyleBackColor = true;
             buttonRight.Click += ButtonMove_Click;
             // 
-            // buttonCreateCar
+            // buttonCreate
             // 
-            buttonCreateCar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonCreateCar.Location = new Point(175, 432);
-            buttonCreateCar.Name = "buttonCreateCar";
-            buttonCreateCar.Size = new Size(157, 23);
-            buttonCreateCar.TabIndex = 6;
-            buttonCreateCar.Text = "создать";
-            buttonCreateCar.UseVisualStyleBackColor = true;
-            buttonCreateCar.Click += ButtonCreateCar_Click;
+            buttonCreate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonCreate.Location = new Point(175, 432);
+            buttonCreate.Name = "buttonCreate";
+            buttonCreate.Size = new Size(200, 23);
+            buttonCreate.TabIndex = 6;
+            buttonCreate.Text = "создать автобус с гармошкой";
+            buttonCreate.UseVisualStyleBackColor = true;
+            buttonCreate.Click += ButtonCreateCar_Click;
             // 
             // comboBoxStrategy
             // 
@@ -146,12 +146,12 @@
             ClientSize = new Size(1104, 467);
             Controls.Add(buttonStrategyStep);
             Controls.Add(comboBoxStrategy);
-            Controls.Add(buttonCreateCar);
+            Controls.Add(buttonCreate);
             Controls.Add(buttonRight);
             Controls.Add(buttonDown);
             Controls.Add(buttonLeft);
             Controls.Add(buttonUp);
-            Controls.Add(buttonCreate);
+            Controls.Add(buttonCreateCar);
             Controls.Add(pictureBoxBus);
             Name = "Formbus";
             Text = "Автобус";
@@ -162,12 +162,12 @@
         #endregion
 
         private PictureBox pictureBoxBus;
-        private Button buttonCreate;
+        private Button buttonCreateCar;
         private Button buttonUp;
         private Button buttonLeft;
         private Button buttonDown;
         private Button buttonRight;
-        private Button buttonCreateCar;
+        private Button buttonCreate;
         private ComboBox comboBoxStrategy;
         private Button buttonStrategyStep;
     }
