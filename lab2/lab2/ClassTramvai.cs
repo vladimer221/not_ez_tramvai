@@ -1,4 +1,4 @@
-﻿namespace notez;
+﻿namespace lab2;
 
 /// <summary>
 /// Класс-сущность "Трамвая с горомошкой"
@@ -19,7 +19,7 @@ public class ClassTramvai
     /// Основной цвет
     /// </summary>
     public Color BodyColor { get; private set; }
-    
+
     /// <summary>
     /// Допольнительный цвет (для опциональный элементов)
     /// </summary>
@@ -28,7 +28,7 @@ public class ClassTramvai
     /// <summary>
     /// признак (опция) наличия гормошки
     /// </summary>
-    public bool Accordion {  get; private set; }
+    public bool Accordion { get; private set; }
 
     /// <summary>
     /// Признак (опция) наличия отсеки
@@ -44,7 +44,7 @@ public class ClassTramvai
     /// Шаг перемещения автобуса
     /// </summary>
     public double Step => Speed * 100 / Weight;
-    
+
     /// <summary>
     /// 
     /// </summary>

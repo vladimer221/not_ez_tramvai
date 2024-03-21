@@ -1,46 +1,70 @@
-﻿namespace notez
+﻿using notez.Drawnings;
+using notez.MovementStategy;
+
+namespace notez
 {
     public partial class Formbus : Form
     {
 
-        private DrawningTramvai? _drawningTramvai;
+        private DrawningTramvaiBus? _drawningTramvaiBus;
+
+        private AbstractStategy? _strategy;
 
         public Formbus()
         {
             InitializeComponent();
+            _strategy = null;
         }
 
         private void Draw()
         {
-            if (_drawningTramvai == null)
+            if (_drawningTramvaiBus == null)
             {
                 return;
             }
 
             Bitmap bmp = new(pictureBoxBus.Width, pictureBoxBus.Height);
             Graphics gr = Graphics.FromImage(bmp);
-            _drawningTramvai.DrawTransport(gr);
+            _drawningTramvaiBus.DrawTransport(gr);
             pictureBoxBus.Image = bmp;
         }
 
-
-
-        private void ButtonCreate_Click(object sender, EventArgs e)
+        private void CreateOblect(string type)
         {
-            Random random = new Random();
-            _drawningTramvai = new DrawningTramvai();
-            _drawningTramvai.Init(random.Next(100, 300), random.Next(1000, 3000),
-                Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)),
-                Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)),
-                Convert.ToBoolean(random.Next(0, 2)), Convert.ToBoolean(random.Next(0, 2)), Convert.ToBoolean(random.Next(0, 2)));
-            _drawningTramvai.SetPictureSize(pictureBoxBus.Width, pictureBoxBus.Height);
-            _drawningTramvai.SetPosition(random.Next(10, 100), random.Next(10, 100));
-            Draw();
 
+            Random random = new();
+            switch (type)
+            {
+                case nameof(DrawningTramvaiBus):
+                    {
+                        _drawningTramvaiBus = new DrawningTramvaiBus(random.Next(100, 300), random.Next(1000, 3000),
+                        Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)));
+                        break;
+                    }
+                case nameof(DrawningTramvai):
+                    {
+                        _drawningTramvaiBus = new DrawningTramvai(random.Next(100, 300), random.Next(1000, 3000),
+                        Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)),
+                        Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)),
+                        Convert.ToBoolean(random.Next(0, 2)), Convert.ToBoolean(random.Next(0, 2)), Convert.ToBoolean(random.Next(0, 2)));
+                        break;
+                    }
+                default:
+                    return;
+            }
+            _drawningTramvaiBus.SetPictureSize(pictureBoxBus.Width, pictureBoxBus.Height);
+            _drawningTramvaiBus.SetPosition(random.Next(10, 100), random.Next(10, 100));
+            _strategy = null;
+            comboBoxStrategy.Enabled = true;
+            Draw();
         }
+
+        private void ButtonCreate_Click(object sender, EventArgs e) => CreateOblect(nameof(DrawningTramvai));
+
+        private void ButtonCreateCar_Click(object sender, EventArgs e) => CreateOblect(nameof(DrawningTramvaiBus));
         private void ButtonMove_Click(object sender, EventArgs e)
         {
-            if (_drawningTramvai == null)
+            if (_drawningTramvaiBus == null)
             {
                 return;
             }
@@ -50,16 +74,16 @@
             switch (name)
             {
                 case "buttonUp":
-                    result = _drawningTramvai.MoveTransport(DirectionType.Up);
+                    result = _drawningTramvaiBus.MoveTransport(DirectionType.Up);
                     break;
                 case "buttonDown":
-                    result = _drawningTramvai.MoveTransport(DirectionType.Down);
+                    result = _drawningTramvaiBus.MoveTransport(DirectionType.Down);
                     break;
                 case "buttonLeft":
-                    result = _drawningTramvai.MoveTransport(DirectionType.Left);
+                    result = _drawningTramvaiBus.MoveTransport(DirectionType.Left);
                     break;
                 case "buttonRight":
-                    result = _drawningTramvai.MoveTransport(DirectionType.Right);
+                    result = _drawningTramvaiBus.MoveTransport(DirectionType.Right);
                     break;
             }
 
@@ -69,9 +93,43 @@
             }
         }
 
-        
+        private void buttonStrategyStep_Click(object sender, EventArgs e)
+        {
+            if (_drawningTramvaiBus == null)
+            {
+                return;
+            }
+            if (comboBoxStrategy.Enabled)
+            {
+                _strategy = comboBoxStrategy.SelectedIndex switch
+                {
+                    0 => new MoveToCenter(),
+                    1 => new MoveToBorder(),
+                    _ => null,
+                };
+                if (_strategy == null)
+                {
+                    return;
+                }
+                _strategy.SetData(new MoveableBus(_drawningTramvaiBus), pictureBoxBus.Width, pictureBoxBus.Height);
+            }
+            if (_strategy == null)
+            {
+                return;
+            }
+            comboBoxStrategy.Enabled = false;
+            _strategy.MakeStep();
+            Draw();
 
-        
+            if (_strategy.GetStatus() == StrategyStatus.Finish)
+            {
+                comboBoxStrategy.Enabled = true;
+                _strategy = null;
+            }
+
+
+        }
+
     }
 }
 

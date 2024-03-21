@@ -34,6 +34,9 @@
             buttonLeft = new Button();
             buttonDown = new Button();
             buttonRight = new Button();
+            buttonCreateCar = new Button();
+            comboBoxStrategy = new ComboBox();
+            buttonStrategyStep = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxBus).BeginInit();
             SuspendLayout();
             // 
@@ -42,16 +45,16 @@
             pictureBoxBus.Dock = DockStyle.Fill;
             pictureBoxBus.Location = new Point(0, 0);
             pictureBoxBus.Name = "pictureBoxBus";
-            pictureBoxBus.Size = new Size(1014, 602);
+            pictureBoxBus.Size = new Size(1104, 467);
             pictureBoxBus.TabIndex = 0;
             pictureBoxBus.TabStop = false;
             // 
             // buttonCreate
             // 
             buttonCreate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonCreate.Location = new Point(12, 567);
+            buttonCreate.Location = new Point(12, 432);
             buttonCreate.Name = "buttonCreate";
-            buttonCreate.Size = new Size(75, 23);
+            buttonCreate.Size = new Size(157, 23);
             buttonCreate.TabIndex = 1;
             buttonCreate.Text = "создать";
             buttonCreate.UseVisualStyleBackColor = true;
@@ -62,7 +65,7 @@
             buttonUp.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             buttonUp.BackgroundImage = Properties.Resources.photo_2024_03_20_02_09_00;
             buttonUp.BackgroundImageLayout = ImageLayout.Stretch;
-            buttonUp.Location = new Point(926, 507);
+            buttonUp.Location = new Point(1016, 372);
             buttonUp.Name = "buttonUp";
             buttonUp.Size = new Size(35, 35);
             buttonUp.TabIndex = 2;
@@ -74,7 +77,7 @@
             buttonLeft.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             buttonLeft.BackgroundImage = Properties.Resources.asdleft;
             buttonLeft.BackgroundImageLayout = ImageLayout.Stretch;
-            buttonLeft.Location = new Point(885, 548);
+            buttonLeft.Location = new Point(975, 413);
             buttonLeft.Name = "buttonLeft";
             buttonLeft.Size = new Size(35, 35);
             buttonLeft.TabIndex = 3;
@@ -86,7 +89,7 @@
             buttonDown.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             buttonDown.BackgroundImage = Properties.Resources.asdDOWN;
             buttonDown.BackgroundImageLayout = ImageLayout.Stretch;
-            buttonDown.Location = new Point(926, 548);
+            buttonDown.Location = new Point(1016, 413);
             buttonDown.Name = "buttonDown";
             buttonDown.Size = new Size(35, 35);
             buttonDown.TabIndex = 4;
@@ -98,18 +101,52 @@
             buttonRight.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             buttonRight.BackgroundImage = Properties.Resources.asdright;
             buttonRight.BackgroundImageLayout = ImageLayout.Stretch;
-            buttonRight.Location = new Point(967, 548);
+            buttonRight.Location = new Point(1057, 413);
             buttonRight.Name = "buttonRight";
             buttonRight.Size = new Size(35, 35);
             buttonRight.TabIndex = 5;
             buttonRight.UseVisualStyleBackColor = true;
             buttonRight.Click += ButtonMove_Click;
             // 
+            // buttonCreateCar
+            // 
+            buttonCreateCar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonCreateCar.Location = new Point(175, 432);
+            buttonCreateCar.Name = "buttonCreateCar";
+            buttonCreateCar.Size = new Size(157, 23);
+            buttonCreateCar.TabIndex = 6;
+            buttonCreateCar.Text = "создать";
+            buttonCreateCar.UseVisualStyleBackColor = true;
+            buttonCreateCar.Click += ButtonCreateCar_Click;
+            // 
+            // comboBoxStrategy
+            // 
+            comboBoxStrategy.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxStrategy.FormattingEnabled = true;
+            comboBoxStrategy.Items.AddRange(new object[] { "К центру", "К краю" });
+            comboBoxStrategy.Location = new Point(971, 12);
+            comboBoxStrategy.Name = "comboBoxStrategy";
+            comboBoxStrategy.Size = new Size(121, 23);
+            comboBoxStrategy.TabIndex = 7;
+            // 
+            // buttonStrategyStep
+            // 
+            buttonStrategyStep.Location = new Point(1012, 41);
+            buttonStrategyStep.Name = "buttonStrategyStep";
+            buttonStrategyStep.Size = new Size(80, 30);
+            buttonStrategyStep.TabIndex = 8;
+            buttonStrategyStep.Text = "Шаг";
+            buttonStrategyStep.UseVisualStyleBackColor = true;
+            buttonStrategyStep.Click += buttonStrategyStep_Click;
+            // 
             // Formbus
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1014, 602);
+            ClientSize = new Size(1104, 467);
+            Controls.Add(buttonStrategyStep);
+            Controls.Add(comboBoxStrategy);
+            Controls.Add(buttonCreateCar);
             Controls.Add(buttonRight);
             Controls.Add(buttonDown);
             Controls.Add(buttonLeft);
@@ -130,5 +167,8 @@
         private Button buttonLeft;
         private Button buttonDown;
         private Button buttonRight;
+        private Button buttonCreateCar;
+        private ComboBox comboBoxStrategy;
+        private Button buttonStrategyStep;
     }
 }
