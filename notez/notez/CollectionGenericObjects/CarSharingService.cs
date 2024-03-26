@@ -12,7 +12,7 @@ public class CarSharingService : AbstractCompany
     private int _picWidth;
     private int _picHeight;
 
-    private int _placeWidth = 380;
+    private int _placeWidth = 410;
     private int _placeHeight = 95;
 
     public CarSharingService(int picWight, int picHeight, ICollectionGenericObjects<DrawningTramvaiBus> collection) : base(picWight, picHeight, collection)
@@ -33,7 +33,7 @@ public class CarSharingService : AbstractCompany
             for (int j = 0; j < HorizLines + 1; j++)
             {
                 int yPos = j * _placeHeight;
-                g.DrawLine(linePen, i * 350 + (i * 30), yPos, (i + 1) * _placeWidth - 10, yPos);
+                g.DrawLine(linePen, i * 350 + (i * 60), yPos, (i + 1) * _placeWidth - 40, yPos);
                 ///g.DrawLine(linePen, i * _placeWidth, yPos, (i + 1) * _placeWidth + (i * 20), yPos);
             }
         }
