@@ -63,7 +63,6 @@ public class DrawningTramvaiBus
     public DrawningTramvaiBus(int speed, double weight, Color bodycolor) : this()
     {
         ClassTramvaiBus = new ClassTramvaiBus(speed, weight, bodycolor);
-
     }
 
     protected DrawningTramvaiBus(int drawningBusWight, int drawningBusHeight ) : this()
@@ -81,7 +80,8 @@ public class DrawningTramvaiBus
         {
             return true;
         }
-        {
+        else 
+        { 
             return false;
         }
 
@@ -154,6 +154,7 @@ public class DrawningTramvaiBus
 
 
         Pen pen = new(Color.Black);
+        Brush brB = new SolidBrush(ClassTramvaiBus.BodyColor);
 
         // g.DrawRectangle(pen, _startPosX.Value, _startPosY.Value, _drawningBusWight, _drawingBusHeight);
         // g.DrawRectangle(pen, _startPosX.Value + (int)_drawningBusWight, _startPosY.Value + (int)_drawingBusHeight, (int)ClassTramvaiBus.Step, 1);
@@ -164,7 +165,7 @@ public class DrawningTramvaiBus
         // g.DrawRectangle(pen, 0, (int)_pictureHeight / 2, (int)_pictureWight, 1);
 
         // Рисуем кузов автобуса
-        g.FillRectangle(Brushes.Yellow, _startPosX.Value, _startPosY.Value, 150, 60);
+        g.FillRectangle(brB, _startPosX.Value, _startPosY.Value, 150, 60);
         g.DrawRectangle(pen, _startPosX.Value, _startPosY.Value, 150, 60);
 
         // Рисуем дверь
@@ -172,21 +173,15 @@ public class DrawningTramvaiBus
         g.DrawRectangle(pen, _startPosX.Value + 67, _startPosY.Value + 10, 25, 50);
 
         // Рисуем 
-
+        //g.FillRectangle()
+        g.FillRectangle(Brushes.White, _startPosX.Value + 110, _startPosY.Value + 10, 30, 30);
         g.DrawRectangle(pen, _startPosX.Value + 110, _startPosY.Value + 10, 30, 30);
+        g.FillRectangle(Brushes.White, _startPosX.Value + 20, _startPosY.Value + 10, 30, 30);
         g.DrawRectangle(pen, _startPosX.Value + 20, _startPosY.Value + 10, 30, 30);
 
         // Рисуем колеса
         g.FillEllipse(Brushes.Black, _startPosX.Value + 20, _startPosY.Value + 55, 30, 30);
         g.FillEllipse(Brushes.Black, _startPosX.Value + 110, _startPosY.Value + 55, 30, 30);
-
-
-
-        // 2 колеса
-
-
-
-
 
     }
 }

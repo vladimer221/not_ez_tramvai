@@ -4,9 +4,9 @@ namespace notez.Drawnings;
 
 public class DrawningTramvai : DrawningTramvaiBus
 {
-    public  DrawningTramvai(int speed, double weight, Color bodycolor, Color additionalColor, bool accordion, bool line, bool seconddoor) : base(350, 85)
+    public  DrawningTramvai(int speed, double weight, Color bodycolor, Color additionalColor,Color additionalBodyColor, bool accordion, bool line, bool seconddoor) : base(350, 85)
     {
-        ClassTramvaiBus = new ClassTramvai(speed ,weight , bodycolor ,additionalColor, accordion, line, seconddoor);
+        ClassTramvaiBus = new ClassTramvai(speed ,weight , bodycolor ,additionalColor, additionalBodyColor, accordion, line, seconddoor);
     }
 
     public override void DrawTransport(Graphics g)
@@ -18,16 +18,12 @@ public class DrawningTramvai : DrawningTramvaiBus
 
         Pen pen = new(Color.Black);
         Brush additionalBrush = new SolidBrush(tramvai.AdditionalColor);
+        Brush additionalBody = new SolidBrush(tramvai.AdditionalBodyColor);
 
-
-        // окна?
-
-
-
-
+       
         // гармошка
-            g.DrawRectangle(pen, _startPosX.Value + 150, _startPosY.Value + 10, 50, 45);
-            g.FillRectangle(Brushes.Bisque, _startPosX.Value + 200, _startPosY.Value, 150, 60);
+        g.DrawRectangle(pen, _startPosX.Value + 150, _startPosY.Value + 10, 50, 45);
+            g.FillRectangle(additionalBody, _startPosX.Value + 200, _startPosY.Value, 150, 60);
             g.DrawRectangle(pen, _startPosX.Value + 200, _startPosY.Value, 150, 60);
             g.FillRectangle(additionalBrush, _startPosX.Value + 150, _startPosY.Value + 10, 50, 45);
       

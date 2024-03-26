@@ -10,6 +10,18 @@ namespace notez
 
         private AbstractStategy? _strategy;
 
+        public DrawningTramvaiBus SetCar
+        {
+            set 
+            {
+                _drawningTramvaiBus = value;
+                _drawningTramvaiBus.SetPictureSize(pictureBoxBus.Width, pictureBoxBus.Height);
+                comboBoxStrategy.Enabled = true;
+                _strategy = null;
+                Draw();
+            }
+        }
+
         public Formbus()
         {
             InitializeComponent();
@@ -29,39 +41,6 @@ namespace notez
             pictureBoxBus.Image = bmp;
         }
 
-        private void CreateOblect(string type)
-        {
-
-            Random random = new();
-            switch (type)
-            {
-                case nameof(DrawningTramvaiBus):
-                    {
-                        _drawningTramvaiBus = new DrawningTramvaiBus(random.Next(100, 300), random.Next(1000, 3000),
-                        Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)));
-                        break;
-                    }
-                case nameof(DrawningTramvai):
-                    {
-                        _drawningTramvaiBus = new DrawningTramvai(random.Next(100, 300), random.Next(1000, 3000),
-                        Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)),
-                        Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)),
-                        Convert.ToBoolean(random.Next(0, 2)), Convert.ToBoolean(random.Next(0, 2)), Convert.ToBoolean(random.Next(0, 2)));
-                        break;
-                    }
-                default:
-                    return;
-            }
-            _drawningTramvaiBus.SetPictureSize(pictureBoxBus.Width, pictureBoxBus.Height);
-            _drawningTramvaiBus.SetPosition(random.Next(10, 100), random.Next(10, 100));
-            _strategy = null;
-            comboBoxStrategy.Enabled = true;
-            Draw();
-        }
-
-        private void ButtonCreateCar_Click(object sender, EventArgs e) => CreateOblect(nameof(DrawningTramvai));
-
-        private void ButtonCreate_Click(object sender, EventArgs e) => CreateOblect(nameof(DrawningTramvaiBus));
         private void ButtonMove_Click(object sender, EventArgs e)
         {
             if (_drawningTramvaiBus == null)
