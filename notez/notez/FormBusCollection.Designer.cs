@@ -32,7 +32,6 @@
             panelCompanyTools = new Panel();
             ButtonGoToCheck = new Button();
             buttonAddBus = new Button();
-            buttonTramvaiBus = new Button();
             buttonRefresh = new Button();
             maskedTextBox = new MaskedTextBox();
             ButtonRemoveBus = new Button();
@@ -71,7 +70,6 @@
             // 
             panelCompanyTools.Controls.Add(ButtonGoToCheck);
             panelCompanyTools.Controls.Add(buttonAddBus);
-            panelCompanyTools.Controls.Add(buttonTramvaiBus);
             panelCompanyTools.Controls.Add(buttonRefresh);
             panelCompanyTools.Controls.Add(maskedTextBox);
             panelCompanyTools.Controls.Add(ButtonRemoveBus);
@@ -101,17 +99,6 @@
             buttonAddBus.Text = "Добавления автобуса";
             buttonAddBus.UseVisualStyleBackColor = true;
             buttonAddBus.Click += ButtonAddBus_Click;
-            // 
-            // buttonTramvaiBus
-            // 
-            buttonTramvaiBus.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            buttonTramvaiBus.Location = new Point(3, 54);
-            buttonTramvaiBus.Name = "buttonTramvaiBus";
-            buttonTramvaiBus.Size = new Size(191, 45);
-            buttonTramvaiBus.TabIndex = 2;
-            buttonTramvaiBus.Text = "Добавления автобуса с гармошкой";
-            buttonTramvaiBus.UseVisualStyleBackColor = true;
-            buttonTramvaiBus.Click += ButtonTramvaiBus_Click;
             // 
             // buttonRefresh
             // 
@@ -282,7 +269,6 @@
         private Button buttonAddBus;
         private Button ButtonRemoveBus;
         private MaskedTextBox maskedTextBox;
-        private Button buttonTramvaiBus;
         private PictureBox pictureBox;
         private Button buttonRefresh;
         private Button ButtonGoToCheck;

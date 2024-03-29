@@ -21,40 +21,21 @@ public partial class FormBusCollection : Form
         panelCompanyTools.Enabled = false;
     }
 
-    private void ButtonAddBus_Click(object sender, EventArgs e) => CreateOblect(nameof(DrawningTramvaiBus));
-
-    private void ButtonTramvaiBus_Click(object sender, EventArgs e) => CreateOblect(nameof(DrawningTramvai));
-
-    private void CreateOblect(string type)
+    private void ButtonAddBus_Click(object sender, EventArgs e)
     {
-        if (_company == null)
+        ForBusConfig form = new();
+        form.addEvent(SetBus);
+        form.Show();
+    }
+
+    private void SetBus(DrawningTramvaiBus bus)
+    {
+        if (_company == null || bus == null)
         {
             return;
         }
 
-        Random random = new();
-        DrawningTramvaiBus drawningTramvaiBus;
-        switch (type)
-        {
-            case nameof(DrawningTramvaiBus):
-                {
-                    drawningTramvaiBus = new DrawningTramvaiBus(random.Next(100, 300), random.Next(1000, 3000), GetColor(random));
-                    break;
-                }
-            case nameof(DrawningTramvai):
-                {
-                    drawningTramvaiBus = new DrawningTramvai(random.Next(100, 300), random.Next(1000, 3000),
-                    GetColor(random),
-                    GetColor(random),
-                    GetColor(random),
-                    Convert.ToBoolean(random.Next(0, 2)), Convert.ToBoolean(random.Next(0, 2)), Convert.ToBoolean(random.Next(0, 2)));
-                    break;
-                }
-            default:
-                return;
-        }
-
-        if (_company + drawningTramvaiBus)
+        if (_company + bus)
 
         {
             MessageBox.Show("Обьект добавлен");
@@ -64,19 +45,9 @@ public partial class FormBusCollection : Form
         {
             MessageBox.Show("Не удалось добавить обьект");
         }
+    
     }
 
-    private static Color GetColor(Random random)
-    {
-        Color color = Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
-        ColorDialog dialog = new();
-        if (dialog.ShowDialog() == DialogResult.OK)
-        {
-            color = dialog.Color;
-        }
-
-        return color;
-    }
 
     private void ButtonRemoveBus_Click(object sender, EventArgs e)
     {
