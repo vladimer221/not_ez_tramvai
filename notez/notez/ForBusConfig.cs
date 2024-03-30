@@ -80,7 +80,7 @@ public partial class ForBusConfig : Form
         (sender as Panel)?.DoDragDrop((sender as Panel)?.BackColor.Name ?? string.Empty, DragDropEffects.Move | DragDropEffects.Copy);
     }
 
-    private void LabelColor_DragDrop(object sender,DragEventArgs e)
+    private void LabelColor_DragDrop(object sender, DragEventArgs e)
     {
         List<string> colorList = new() { "Red", "Green", "Blue", "Black", "White", "Gray", "Yellow", "Purple" };
         if (_bus == null)
@@ -142,6 +142,6 @@ public partial class ForBusConfig : Form
         e.Effect = e.Data?.GetDataPresent(DataFormats.Text) ?? false ? DragDropEffects.Copy : DragDropEffects.None;
     }
 
-
+    private void ButtonCancel_Click(object sender, EventArgs e) => Close();
 }
 
