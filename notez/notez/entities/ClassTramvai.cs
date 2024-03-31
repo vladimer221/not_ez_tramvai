@@ -28,10 +28,10 @@ public class ClassTramvai : ClassTramvaiBus
 
     public static ClassTramvai? CreateClassTramvai(string[] strs)
     {
-        if (strs.Length != 8 || strs[0] != nameof(ClassTramvaiBus))
+        if (strs.Length != 8 || strs[0] != nameof(ClassTramvai))
         {
             return null;
         }
-        return new ClassTramvai(Convert.ToInt32(strs[1]), Convert.ToDouble(strs[2]), Color.FromName(strs[3]), Color.FromName(strs[4]), Color.FromName(strs[4]), Convert.ToBoolean(strs[5]), Convert.ToBoolean(strs[6])) ;
+        return new ClassTramvai(Convert.ToInt32(strs[1]), Convert.ToDouble(strs[2]), Color.FromName(strs[3]), Color.FromName(strs[4]), Color.FromName(strs[5]), Convert.ToBoolean(strs[6]), Convert.ToBoolean(strs[7])) ;
     }
 }

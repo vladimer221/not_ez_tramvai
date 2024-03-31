@@ -159,7 +159,7 @@ public class StorageCollection <T>
         foreach (string data in strs)
         {
             string[] record = data.Split(_separatorForKeyValue, StringSplitOptions.RemoveEmptyEntries);
-            if (record.Length !=4)
+            if (record.Length != 4)
             {
                 continue;
             }

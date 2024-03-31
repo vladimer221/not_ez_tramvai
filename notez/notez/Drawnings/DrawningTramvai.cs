@@ -31,7 +31,7 @@ public class DrawningTramvai : DrawningTramvaiBus
         if (tramvai.SecondDoor)
         {
             g.DrawRectangle(pen, _startPosX.Value + 267, _startPosY.Value + 10, 25, 50);
-            g.FillRectangle(additionalBrush, _startPosX.Value + 267, _startPosY.Value + 10, 25, 50);
+            g.FillRectangle(Brushes.White, _startPosX.Value + 267, _startPosY.Value + 10, 25, 50);
         }
         if (tramvai.Line)
         {

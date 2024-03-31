@@ -12,7 +12,7 @@ public static class ExtentionDrawningBus
         ClassTramvai? tramvai = ClassTramvai.CreateClassTramvai(strs);
         if (tramvai != null)
         {
-            return new DrawningTramvai(Convert.ToInt32(strs[1]), Convert.ToDouble(strs[2]), Color.FromName(strs[3]), Color.FromName(strs[4]), Color.FromName(strs[4]), Convert.ToBoolean(strs[5]), Convert.ToBoolean(strs[6]));
+            return new DrawningTramvai(Convert.ToInt32(strs[1]), Convert.ToDouble(strs[2]), Color.FromName(strs[3]), Color.FromName(strs[4]), Color.FromName(strs[5]), Convert.ToBoolean(strs[6]), Convert.ToBoolean(strs[7]));
         }
 
         ClassTramvaiBus? bus = ClassTramvaiBus.CreateClassTramvaiBus(strs);
