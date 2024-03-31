@@ -1,4 +1,5 @@
 ﻿using notez.Drawnings;
+using notez.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,12 +77,12 @@ public class StorageCollection <T>
         }
     }
 
-    public bool SaveData(string filename)
+    public void SaveData(string filename)
     {  
 
         if (_storages.Count == 0)
         {
-            return false;
+            throw new Exception("В автовокзале отсуствует коллекция для сохранения");
         }
 
         if (File.Exists(filename)) 
@@ -124,14 +125,13 @@ public class StorageCollection <T>
         using FileStream fs = new(filename, FileMode.Create);
         byte[] info = new UTF8Encoding(true).GetBytes(sb.ToString());
         fs.Write(info, 0, info.Length);
-        return true;
     }
 
-    public bool LoadData(string filename)
+    public void LoadData(string filename)
     {
         if (!File.Exists(filename))
         {
-            return false;
+            throw new Exception("Файл не существует");
         }
         string bufferTextFromFile = "";
         using (FileStream fs = new(filename, FileMode.Open))
@@ -146,13 +146,13 @@ public class StorageCollection <T>
 
         string[] strs = bufferTextFromFile.Split(new char[] { '\n', '\r', }, StringSplitOptions.RemoveEmptyEntries);
         if (strs == null  || strs.Length == 0)
-        { 
-            return false;
+        {
+            throw new Exception(" В файле нет данных");
         }
         if (!strs[0].Equals(_collectionKey)) 
         
         {
-            return false; 
+            throw new Exception("в файле не верные данные");
         }
 
         _storages.Clear();
@@ -168,27 +168,33 @@ public class StorageCollection <T>
             ICollectionGenericObjects<T>? collection = StorageCollection<T>.CreateCollection(collectionType);
             if (collection == null) 
             {
-                return false;
+                throw new Exception("Не удалость создать коллекцию");
             }
             collection.MaxCount = Convert.ToInt32(record[2]);
 
             string[] set = record[3].Split(_separatorItems , StringSplitOptions.RemoveEmptyEntries);
             foreach (string elem in set) 
-            { 
-                if(elem?.CreateDrawningTramvaiBus() is T bus)
+            {
+                if (elem?.CreateDrawningTramvaiBus() is T bus)
                 {
-                    if  (!collection.Insert(bus))
+                    try
                     {
-                        return false;
-                    }
+                        if (!collection.Insert(bus))
+                        {
+                            throw new Exception("Обьект не удалось добавить в коллекцию:" + record[3]);
+                        }
 
+                    }
+                    catch (CollectionOverflowException ex)
+                    {
+                        throw new Exception("Коллекция переполнена", ex);
+                    }
                 }
             }
 
             _storages.Add(record[0], collection);
 
         }
-        return true;
     }
     private static ICollectionGenericObjects<T>? CreateCollection(CollectionType collectionType)
     {

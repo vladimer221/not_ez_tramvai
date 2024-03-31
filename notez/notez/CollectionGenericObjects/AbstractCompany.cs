@@ -9,9 +9,9 @@ namespace notez.CollectionGenericObjects;
 
 public abstract class AbstractCompany
 {
-    protected readonly int _placeSizeWidth = 210;
+    protected readonly int _placeSizeWidth = 410;
 
-    protected readonly int _placeSizeHeight = 80;
+    protected readonly int _placeSizeHeight = 95;
 
     protected readonly int _pictureWight;
 

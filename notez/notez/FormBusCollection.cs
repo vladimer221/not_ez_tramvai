@@ -1,4 +1,5 @@
-﻿using notez.CollectionGenericObjects;
+﻿using Microsoft.Extensions.Logging;
+using notez.CollectionGenericObjects;
 using notez.Drawnings;
 
 namespace notez;
@@ -10,10 +11,12 @@ public partial class FormBusCollection : Form
 
     private AbstractCompany? _company = null;
 
-    public FormBusCollection()
+    private readonly ILogger _logger;
+    public FormBusCollection(ILogger<FormBusCollection> logger)
     {
         InitializeComponent();
         _storageCollection = new();
+        _logger = logger;
     }
 
     private void ComboBoxSelectorCompany_SelectedindexChanged(object sender, EventArgs e)
@@ -34,16 +37,23 @@ public partial class FormBusCollection : Form
         {
             return;
         }
-
-        if (_company + bus)
-
+        try
         {
-            MessageBox.Show("Обьект добавлен");
-            pictureBox.Image = _company.Show();
+            if (_company + bus)
+            {
+                string[]? array = bus?.ClassTramvaiBus?.GetStringRepresentation();
+                string bus_string = string.Join(":", array);
+                MessageBox.Show("Обьект добавлен");
+                pictureBox.Image = _company.Show();
+                _logger.LogInformation("Трамвай добавлен" + bus_string);
+            }
+                    
         }
-        else
+
+        catch(Exception ex)
         {
-            MessageBox.Show("Не удалось добавить обьект");
+            MessageBox.Show(ex.Message);
+            _logger.LogError("ошибка: {Message}", ex.Message);
         }
 
     }
@@ -63,15 +73,25 @@ public partial class FormBusCollection : Form
         }
 
         int pos = Convert.ToInt32(maskedTextBox.Text);
-        if (_company - pos)
+
+        try
         {
-            MessageBox.Show("Обьект удален");
-            pictureBox.Image = _company.Show();
+            if (_company - pos)
+
+
+            {
+                MessageBox.Show("Обьект удален");
+                pictureBox.Image = _company.Show();
+                _logger.LogInformation("Автобус удален" + pos);
+
+            }
         }
-        else
+        catch (Exception ex)
         {
-            MessageBox.Show("Не удалось удалить обьект");
-        }
+            MessageBox.Show(ex.Message);
+            _logger.LogError("Ошибка:{Message}", ex.Message);
+        }   
+    
     }
 
     private void ButtonGoToCheck_Click(object sender, EventArgs e)
@@ -200,13 +220,16 @@ public partial class FormBusCollection : Form
     {
         if (saveFileDialog.ShowDialog() == DialogResult.OK)
         { 
-            if (_storageCollection.SaveData(saveFileDialog.FileName)) 
+            try
             {
+                _storageCollection.SaveData(saveFileDialog.FileName);
                 MessageBox.Show("Сохранение прошло успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _logger.LogInformation("Сохранение в файле: {filename}", saveFileDialog.FileName);
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Не сохранилось", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _logger.LogError("Ошибка: {Message}", ex.Message);
             }
         }
     }
@@ -215,16 +238,19 @@ public partial class FormBusCollection : Form
     {
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
-            if (_storageCollection.LoadData(openFileDialog.FileName))
+            try
             {
-                MessageBox.Show("Загрузка прошло успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _storageCollection.LoadData(openFileDialog.FileName);
+                MessageBox.Show("Загрузка прошла успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _logger.LogInformation("Загрузка файла: {filename}", openFileDialog.FileName);
                 RerfreshListBoxItems();
             }
-
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Не загрузилось", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _logger.LogError("Ошибка: {Message}", ex.Message);
             }
+
         }
     }
 

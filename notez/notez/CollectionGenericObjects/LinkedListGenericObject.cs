@@ -1,4 +1,5 @@
-﻿using System;
+﻿using notez.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,7 +42,7 @@ public class LinkedListGenericObject<T> : ICollectionGenericObjects<T>
     {
         if (position < 0 || position >= _collection.Count)
         {
-            throw new ArgumentOutOfRangeException(nameof(position), "Position is out of range");
+            throw new PositionOutOfCollectionException(position);
         }
         var currentNode = _collection.First;
         for (int i = 0; i < position; i++)
@@ -56,7 +57,7 @@ public class LinkedListGenericObject<T> : ICollectionGenericObjects<T>
     {
         if (_maxCount > 0 && _collection.Count >= _maxCount)
         {
-            return false;
+            throw new CollectionOverflowException(Count);
         }
 
         _collection.AddLast(obj);
@@ -72,7 +73,7 @@ public class LinkedListGenericObject<T> : ICollectionGenericObjects<T>
 
         if (position < 0 || position > _collection.Count)
         {
-            throw new ArgumentOutOfRangeException(nameof(position), "Position is out of range.");
+            throw new PositionOutOfCollectionException(position);
         }
         if (position == _collection.Count)
         {
@@ -88,14 +89,14 @@ public class LinkedListGenericObject<T> : ICollectionGenericObjects<T>
 
             _collection.AddBefore(currentNode, obj);
         }
-        return true;
+        throw new CollectionOverflowException(Count);
     }
 
     public bool Remove(int position)
     {
         if (position < 0 || position >= _collection.Count)
         {
-            throw new ArgumentOutOfRangeException(nameof(position), "Position is out of range.");
+            throw new PositionOutOfCollectionException(position);
         }
         var currentNode = _collection.First;
         for (int i = 0; i < position; i++)

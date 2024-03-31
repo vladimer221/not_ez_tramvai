@@ -1,4 +1,5 @@
-﻿using System;
+﻿using notez.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,9 +50,9 @@ public class MassiveGenericObjects<T> : ICollectionGenericObjects<T>
     {
         if (position < 0 || position >= _collection.Length)
         {
-            throw new IndexOutOfRangeException("Неправильная позиция");
+            throw new PositionOutOfCollectionException(position);
         }
-
+        
         return _collection[position];
     }
 
@@ -66,7 +67,7 @@ public class MassiveGenericObjects<T> : ICollectionGenericObjects<T>
                 return true;
             }
         }
-        return false;
+        throw new CollectionOverflowException(Count);
     }
 
     public bool Insert(T obj, int position)
@@ -74,7 +75,7 @@ public class MassiveGenericObjects<T> : ICollectionGenericObjects<T>
 
         if (position < 0 || position >= _collection.Length)
         {
-            throw new IndexOutOfRangeException("Invalid position");
+            throw new PositionOutOfCollectionException(position);
         }
 
 
@@ -102,8 +103,8 @@ public class MassiveGenericObjects<T> : ICollectionGenericObjects<T>
                 return true;
             }
         }
+        throw new CollectionOverflowException(Count);
 
-        return false;
     }
 
 
@@ -111,16 +112,20 @@ public class MassiveGenericObjects<T> : ICollectionGenericObjects<T>
     {
         if (position < 0 || position >= _collection.Length)
         {
-            throw new IndexOutOfRangeException("Invalid position");
+            throw new PositionOutOfCollectionException(position);
         }
 
+        if (_collection[position] == null)
+        {
+            throw new PositionOutOfCollectionException("Обьект не найден:" + position);
+        }
         _collection[position] = null;
         return true;
     }
 
     public IEnumerable<T?> GetItems()
     {
-        for (int i = 0; i < _collection.Length; ++i)
+        for (int i = 0; i < _collection.Length; i++)
         {
             yield return _collection[i];
         }
