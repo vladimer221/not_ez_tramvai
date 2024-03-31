@@ -26,7 +26,7 @@ public abstract class AbstractCompany
         _pictureWight = picWight;
         _pictureHeight = picHeight;
         _collection = collection;
-        _collection.SetMaxCount = GetMaxCount;
+        _collection.MaxCount = GetMaxCount;
     }
 
     public static bool operator +(AbstractCompany company, DrawningTramvaiBus bus)

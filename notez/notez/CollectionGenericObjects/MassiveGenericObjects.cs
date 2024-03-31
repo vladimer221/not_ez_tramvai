@@ -14,8 +14,12 @@ public class MassiveGenericObjects<T> : ICollectionGenericObjects<T>
     
     public int Count => _collection.Length;
 
-    public int SetMaxCount
+    public int MaxCount
     {
+        get
+        { 
+            return _collection.Length;
+        }
         set
         {
             if (value > 0)
@@ -30,7 +34,11 @@ public class MassiveGenericObjects<T> : ICollectionGenericObjects<T>
                 }
             }
         }
+
+
     }
+
+    public CollectionType GetCollectionType => CollectionType.Massive;
 
     public MassiveGenericObjects()
     {
@@ -108,5 +116,13 @@ public class MassiveGenericObjects<T> : ICollectionGenericObjects<T>
 
         _collection[position] = null;
         return true;
+    }
+
+    public IEnumerable<T?> GetItems()
+    {
+        for (int i = 0; i < _collection.Length; ++i)
+        {
+            yield return _collection[i];
+        }
     }
 }

@@ -14,8 +14,25 @@ public class LinkedListGenericObject<T> : ICollectionGenericObjects<T>
     private int _maxCount;
     public int Count => _collection.Count;
 
-    public int SetMaxCount { set { if (value > 0) { _maxCount = value; } } }
+    public int MaxCount
+    {
+        get
+        {
+            return _collection.Count;
+        }
+
+        set
+
+        { if (value > 0)
+            {
+                _maxCount = value;
+            } 
         
+        }
+    }
+
+    public CollectionType GetCollectionType => CollectionType.LinkedList;
+
     public LinkedListGenericObject()
     {
         _collection = new();
@@ -87,5 +104,15 @@ public class LinkedListGenericObject<T> : ICollectionGenericObjects<T>
         }
         _collection.Remove(currentNode);
         return true;
+    }
+
+    public IEnumerable<T?> GetItems()
+    {
+        var currentNode = _collection.First;
+        while (currentNode != null)
+        {
+            yield return currentNode.Value;
+            currentNode = currentNode.Next;
+        }
     }
 }

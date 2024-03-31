@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace notez.entities;
+﻿namespace notez.entities;
 
 public class ClassTramvaiBus
 {
@@ -27,7 +21,7 @@ public class ClassTramvaiBus
     /// Шаг перемещения автобуса
     /// </summary>
     public double Step => Speed * 100 / Weight;
-    
+
     /// <summary>
     /// Конструктор сущности
     /// </summary>
@@ -40,5 +34,19 @@ public class ClassTramvaiBus
         Speed = speed;
         Weight = weight;
         BodyColor = bodycolor;
+    }
+
+    public virtual string[] GetStringRepresentation()
+    { 
+        return new[] {nameof(ClassTramvaiBus), Speed.ToString(), Weight.ToString(), BodyColor.Name };
+    }
+
+    public static ClassTramvaiBus? CreateClassTramvaiBus(string[] strs)
+    {
+        if (strs.Length != 4 || strs[0] != nameof(ClassTramvaiBus))
+        {
+            return null;
+        }
+        return new ClassTramvaiBus(Convert.ToInt32(strs[1]), Convert.ToDouble(strs[2]), Color.FromName(strs[3]));
     }
 }

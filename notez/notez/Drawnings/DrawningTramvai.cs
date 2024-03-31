@@ -6,7 +6,7 @@ public class DrawningTramvai : DrawningTramvaiBus
 {
     public  DrawningTramvai(int speed, double weight, Color bodycolor, Color additionalColor,Color additionalBodyColor, bool line, bool seconddoor) : base(350, 85)
     {
-        ClassTramvaiBus = new ClassTramvai(speed ,weight , bodycolor ,additionalColor, additionalBodyColor, line, seconddoor);
+        ClassTramvaiBus = new ClassTramvai(speed , weight , bodycolor ,additionalColor, additionalBodyColor, line, seconddoor);
     }
 
     public override void DrawTransport(Graphics g)

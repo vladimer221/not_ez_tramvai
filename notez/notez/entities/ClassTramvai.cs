@@ -20,4 +20,18 @@ public class ClassTramvai : ClassTramvaiBus
         Line = line;
         SecondDoor = seconddoor;
     }
+
+    public override string[] GetStringRepresentation()
+    {
+        return new[] { nameof(ClassTramvai), Speed.ToString(), Weight.ToString(), BodyColor.Name, AdditionalColor.Name, AdditionalBodyColor.Name, Line.ToString(), SecondDoor.ToString()};
+    }
+
+    public static ClassTramvai? CreateClassTramvai(string[] strs)
+    {
+        if (strs.Length != 8 || strs[0] != nameof(ClassTramvaiBus))
+        {
+            return null;
+        }
+        return new ClassTramvai(Convert.ToInt32(strs[1]), Convert.ToDouble(strs[2]), Color.FromName(strs[3]), Color.FromName(strs[4]), Color.FromName(strs[4]), Convert.ToBoolean(strs[5]), Convert.ToBoolean(strs[6])) ;
+    }
 }

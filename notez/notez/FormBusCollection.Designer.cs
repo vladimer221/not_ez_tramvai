@@ -46,10 +46,17 @@
             labelCollectionName = new Label();
             comboBoxSelectorCompany = new ComboBox();
             pictureBox = new PictureBox();
+            menuStrip = new MenuStrip();
+            файлToolStripMenuItem = new ToolStripMenuItem();
+            saveToolStripMenuItem = new ToolStripMenuItem();
+            loadToolStripMenuItem = new ToolStripMenuItem();
+            saveFileDialog = new SaveFileDialog();
+            openFileDialog = new OpenFileDialog();
             groupBoxTools.SuspendLayout();
             panelCompanyTools.SuspendLayout();
             panelStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
+            menuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // groupBoxTools
@@ -59,9 +66,9 @@
             groupBoxTools.Controls.Add(panelStorage);
             groupBoxTools.Controls.Add(comboBoxSelectorCompany);
             groupBoxTools.Dock = DockStyle.Right;
-            groupBoxTools.Location = new Point(988, 0);
+            groupBoxTools.Location = new Point(988, 24);
             groupBoxTools.Name = "groupBoxTools";
-            groupBoxTools.Size = new Size(203, 581);
+            groupBoxTools.Size = new Size(203, 557);
             groupBoxTools.TabIndex = 0;
             groupBoxTools.TabStop = false;
             groupBoxTools.Text = "инструменты";
@@ -238,11 +245,51 @@
             // pictureBox
             // 
             pictureBox.Dock = DockStyle.Fill;
-            pictureBox.Location = new Point(0, 0);
+            pictureBox.Location = new Point(0, 24);
             pictureBox.Name = "pictureBox";
-            pictureBox.Size = new Size(988, 581);
+            pictureBox.Size = new Size(988, 557);
             pictureBox.TabIndex = 1;
             pictureBox.TabStop = false;
+            // 
+            // menuStrip
+            // 
+            menuStrip.Items.AddRange(new ToolStripItem[] { файлToolStripMenuItem });
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Size = new Size(1191, 24);
+            menuStrip.TabIndex = 2;
+            menuStrip.Text = "menuStrip";
+            // 
+            // файлToolStripMenuItem
+            // 
+            файлToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveToolStripMenuItem, loadToolStripMenuItem });
+            файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+            файлToolStripMenuItem.Size = new Size(48, 20);
+            файлToolStripMenuItem.Text = "Файл";
+            // 
+            // saveToolStripMenuItem
+            // 
+            saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            saveToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
+            saveToolStripMenuItem.Size = new Size(181, 22);
+            saveToolStripMenuItem.Text = "Сохранение";
+            saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
+            // 
+            // loadToolStripMenuItem
+            // 
+            loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            loadToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.L;
+            loadToolStripMenuItem.Size = new Size(181, 22);
+            loadToolStripMenuItem.Text = "Загрузка";
+            loadToolStripMenuItem.Click += loadToolStripMenuItem_Click;
+            // 
+            // saveFileDialog
+            // 
+            saveFileDialog.Filter = "txt file | *.txt";
+            // 
+            // openFileDialog
+            // 
+            openFileDialog.Filter = "txt file | *.txt";
             // 
             // FormBusCollection
             // 
@@ -251,6 +298,8 @@
             ClientSize = new Size(1191, 581);
             Controls.Add(pictureBox);
             Controls.Add(groupBoxTools);
+            Controls.Add(menuStrip);
+            MainMenuStrip = menuStrip;
             Name = "FormBusCollection";
             Text = "Коллекция автобусов ";
             groupBoxTools.ResumeLayout(false);
@@ -259,7 +308,10 @@
             panelStorage.ResumeLayout(false);
             panelStorage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -282,5 +334,11 @@
         private Button buttonCreateCompany;
         private Panel panelCompanyTools;
         private ListBox listBoxCollection;
+        private MenuStrip menuStrip;
+        private ToolStripMenuItem файлToolStripMenuItem;
+        private ToolStripMenuItem saveToolStripMenuItem;
+        private ToolStripMenuItem loadToolStripMenuItem;
+        private SaveFileDialog saveFileDialog;
+        private OpenFileDialog openFileDialog;
     }
 }

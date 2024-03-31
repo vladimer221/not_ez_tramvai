@@ -11,7 +11,7 @@ public interface ICollectionGenericObjects<T>
 {
     int Count { get; }
 
-    int SetMaxCount { set; }
+    int MaxCount { get; set; }
 
     bool Insert(T obj);
 
@@ -20,4 +20,8 @@ public interface ICollectionGenericObjects<T>
     bool Remove(int pozition);
 
     T? Get(int position);
+
+    CollectionType GetCollectionType {  get; }
+
+    IEnumerable<T?> GetItems();     
 }
